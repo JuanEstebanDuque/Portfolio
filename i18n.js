@@ -82,7 +82,7 @@ const i18n = {
         ],
       },
       {
-        date: "", // TODO: fechas del trabajo con Coomeva
+        date: "JUL 2026 — ACTUAL",
         company: "Universidad Icesi",
         role: "Desarrollador",
         text: "Desarrollo de soluciones con IA para aliados externos de la universidad.",
@@ -179,7 +179,7 @@ const i18n = {
         ],
       },
       {
-        date: "",
+        date: "JUL 2026 — PRESENT",
         company: "Universidad Icesi",
         role: "Developer",
         text: "Building AI solutions for the university's external partners.",
