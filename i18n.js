@@ -68,8 +68,24 @@ const i18n = {
       {
         date: "SEP 2026 — ACTUAL",
         company: "INNLAB",
-        role: "Desarrollador fullstack",
-        text: "Diseño y construyo productos digitales de punta a punta, conectando interfaces, servicios y decisiones de negocio.",
+        role: "Líder de proyecto · Proyecto de grado",
+        text: "Lidero Índigo dentro del laboratorio de innovación de la universidad, desde el producto hasta la base técnica que usan los nuevos integrantes.",
+        projects: [
+          {
+            name: "Índigo",
+            text: "Evolución de Index, un diagnosticador de empresas con un único diagnóstico fijo. Índigo permite crear diagnósticos de cualquier área de conocimiento de la universidad para personas, equipos u organizaciones, con nuevos roles: profesores que los diseñan, comerciales que los conectan con empresas y empresas que los responden.",
+          },
+          {
+            name: "Wiki técnica",
+            text: "Documentación de cómo funcionan los repositorios de frontend, backend y base de datos, para que quien llegue al equipo pueda empezar a trabajar siguiéndola.",
+          },
+        ],
+      },
+      {
+        date: "", // TODO: fechas del trabajo con Coomeva
+        company: "Universidad Icesi",
+        role: "Desarrollador",
+        text: "Desarrollo de soluciones con IA para aliados externos de la universidad.",
         projects: [
           {
             name: "Agente de costos médicos · Coomeva",
@@ -90,7 +106,7 @@ const i18n = {
         ],
       },
       {
-        date: "", // TODO: fechas en Banco W
+        date: "AGO 2024 — FEB 2025",
         company: "Banco W",
         role: "Diseñador UX",
         text: "Investigación y diseño de flujos para un chatbot financiero, convirtiendo hallazgos de usuario en decisiones de producto.",
@@ -149,8 +165,24 @@ const i18n = {
       {
         date: "SEP 2026 — PRESENT",
         company: "INNLAB",
-        role: "Fullstack developer",
-        text: "I design and build digital products end to end, connecting interfaces, services, and business decisions.",
+        role: "Project lead · Capstone project",
+        text: "I lead Índigo within the university's innovation lab, from the product to the technical groundwork new team members rely on.",
+        projects: [
+          {
+            name: "Índigo",
+            text: "The evolution of Index, a company diagnostic tool with a single fixed assessment. Índigo lets any academic area of the university create diagnostics for individuals, teams, or organizations, with new roles: professors who design them, sales staff who connect them with companies, and companies that take them.",
+          },
+          {
+            name: "Technical wiki",
+            text: "Documentation of how the frontend, backend, and database repositories work, so anyone joining the team can get started by following it.",
+          },
+        ],
+      },
+      {
+        date: "",
+        company: "Universidad Icesi",
+        role: "Developer",
+        text: "Building AI solutions for the university's external partners.",
         projects: [
           {
             name: "Medical cost assistant · Coomeva",
@@ -171,7 +203,7 @@ const i18n = {
         ],
       },
       {
-        date: "",
+        date: "AUG 2024 — FEB 2025",
         company: "Banco W",
         role: "UX designer",
         text: "Research and flow design for a financial chatbot, turning user insights into product decisions.",
