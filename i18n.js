@@ -1,9 +1,14 @@
 // Enlaces: reemplaza cada "#" por la URL real.
 const links = {
-  email: "#", // p. ej. "mailto:tu@correo.com"
+  email: "juanestebanduque875@gmail.com",
   linkedin: "https://www.linkedin.com/in/juanestebanduquetaborda-fullstack-ia/",
   github: "https://github.com/JuanEstebanDuque",
-  cv: "#",
+  behance: "https://www.behance.net/juanesduquet1",
+  // La hoja de vida que se descarga depende del idioma activo.
+  cv: {
+    es: "assets/cv/JuanEstebanDuqueTaborda_CV_ES.pdf",
+    en: "assets/cv/JuanEstebanDuqueTaborda_CV_EN.pdf",
+  },
 };
 
 // Proyectos destacados (mismo orden que `featured` en cada idioma).
@@ -144,8 +149,9 @@ const i18n = {
     contactEyebrow: "05 / Hablemos",
     contactTitle: "¿Tienes un problema que podamos convertir en producto?",
     writeMe: "Escríbeme",
-    email: "Correo",
     downloadCv: "Descargar hoja de vida",
+    cvShort: "Hoja de vida",
+    mailSubject: "Hola Juan, vi tu portafolio",
   },
   en: {
     nav: ["Featured", "Experience", "Projects", "About", "Contact"],
@@ -245,8 +251,9 @@ const i18n = {
     contactEyebrow: "05 / Let's talk",
     contactTitle: "Do you have a problem we can turn into a product?",
     writeMe: "Email me",
-    email: "Email",
     downloadCv: "Download résumé",
+    cvShort: "Résumé",
+    mailSubject: "Hi Juan, I saw your portfolio",
   },
 };
 

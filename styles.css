@@ -84,7 +84,14 @@ h1, h2, h3 { font-family: var(--display); font-weight: 400; }
 
 /* Shared */
 main { max-width: 1258px; margin: 0 auto; }
-.section { padding: clamp(72px, 9vw, 112px) var(--gutter) 72px; }
+.section { position: relative; padding: clamp(72px, 9vw, 112px) var(--gutter) 72px; }
+.section > :not(.orb) { position: relative; }
+/* Semiesferas en los laterales: anclas al borde de la ventana, medio círculo afuera */
+.orb-side { top: 18%; width: 300px; aspect-ratio: 1; opacity: .55; }
+.orb-left { left: calc(50% - 50vw - 150px); }
+.orb-right { right: calc(50% - 50vw - 150px); }
+.orb-low { top: 55%; }
+.orb-small { width: 220px; right: calc(50% - 50vw - 110px); }
 .section-heading {
   display: grid;
   grid-template-columns: 278px 1fr;
@@ -123,6 +130,7 @@ h2 { font-size: clamp(2.5rem, 6.4vw, 5rem); line-height: 1; letter-spacing: -.03
 .btn:hover { background: var(--white); color: var(--bg); }
 .btn-primary { border-color: var(--orange); background: var(--orange); color: var(--bg); }
 .btn-primary:hover { background: var(--soft-orange); border-color: var(--soft-orange); }
+.btn-ghost { gap: 8px; border-color: var(--gray-mid); }
 .text-link {
   display: inline-block;
   padding-bottom: 3px;
@@ -273,7 +281,6 @@ h1 {
 /* Contact */
 .contact { position: relative; border-radius: 48px 48px 0 0; }
 .orb-contact { top: 22px; right: 70px; width: 235px; aspect-ratio: 1; }
-.contact > :not(.orb) { position: relative; }
 .contact-cta { display: flex; align-items: flex-end; justify-content: space-between; gap: 48px; margin-top: 24px; }
 .contact-cta h2 { max-width: 806px; }
 .contact-links {
@@ -301,6 +308,9 @@ h1 {
 @media (max-width: 900px) {
   /* shortcut: en móvil se oculta la navegación (quedan logo e idioma); añadir menú si hace falta */
   .nav, .badge, .orb-contact { display: none; }
+  .orb-side { width: 160px; opacity: .4; }
+  .orb-left { left: -100px; }
+  .orb-right, .orb-small { right: -100px; }
   .hero { min-height: 0; padding-bottom: 72px; }
   .section-heading, .project, .project-reverse, .job, .about { grid-template-columns: 1fr; }
   .section-heading { margin-bottom: 40px; }
