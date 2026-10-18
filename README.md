@@ -16,7 +16,7 @@ El diseño viene del archivo de Figma **Portafolio**, página **Portafolio web**
 index.html      Estructura de la página
 styles.css      Estilos y colores del diseño (variables en :root)
 i18n.js         Textos ES/EN y enlaces
-assets/         Logo (SVG) y foto de perfil (WebP)
+assets/         Logo (SVG), foto de perfil y portadas de proyectos (WebP)
 ```
 
 ## Ver en local
@@ -32,8 +32,11 @@ python -m http.server 4173
 
 Todo el contenido editable está en [`i18n.js`](i18n.js):
 
-- **Enlaces:** el objeto `links` del inicio (correo, LinkedIn, GitHub, hoja de vida, casos de estudio y exploraciones). El correo va como `mailto:tu@correo.com`.
-- **Textos:** los objetos `i18n.es` e `i18n.en`. Cada idioma debe tener las mismas claves; si falta una, la consola muestra un aviso y ese texto sale vacío en la página.
+- **Enlaces:** el objeto `links` del inicio (correo, LinkedIn, GitHub, hoja de vida). El correo va como `mailto:tu@correo.com`.
+- **Proyectos destacados:** el arreglo `featured` (imagen, etiquetas y enlaces `live` / `github` / `behance`; los que falten no se muestran).
+- **Más proyectos:** el arreglo `work`. `type` es `"dev"` o `"design"` y decide en qué filtro aparece.
+- **Textos:** los objetos `i18n.es` e `i18n.en`. Cada idioma debe tener las mismas claves, y `featured` / `work` deben tener tantos elementos como los arreglos de arriba (van por posición); si no, la consola muestra un aviso.
+- **Experiencia:** cada trabajo en `jobs` tiene una lista `projects` con los proyectos hechos ahí.
 
 El idioma inicial sale del navegador y la elección del visitante se recuerda en `localStorage`.
 

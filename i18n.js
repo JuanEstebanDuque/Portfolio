@@ -1,17 +1,46 @@
 // Enlaces: reemplaza cada "#" por la URL real.
 const links = {
   email: "#", // p. ej. "mailto:tu@correo.com"
-  linkedin: "#",
-  github: "#",
+  linkedin: "https://www.linkedin.com/in/juanestebanduquetaborda-fullstack-ia/",
+  github: "https://github.com/JuanEstebanDuque",
   cv: "#",
-  case1: "#", // Portal de Comunicación de Valor
-  case2: "#", // Agente de costos médicos
-  explorations: ["#", "#", "#"], // DDD, UX, UI
 };
+
+// Proyectos destacados (mismo orden que `featured` en cada idioma).
+const featured = [
+  {
+    img: "assets/polis.webp",
+    tags: ["React", "Supabase Realtime", "Docker", "UX/UI"],
+    links: {
+      live: "https://construye-la-torre.vercel.app",
+      github: "https://github.com/JuanEstebanDuque/ConstruyeLaTorre",
+      behance: "https://www.behance.net/gallery/256521321/Polis-Phygital-game",
+    },
+  },
+  {
+    img: "assets/xposture.webp",
+    tags: ["Flutter", "Arduino", "Figma", "UX research"],
+    links: {
+      github: "https://github.com/JuanEstebanDuque/Kinestia",
+      behance: "https://www.behance.net/gallery/253742245/Xposture",
+    },
+  },
+];
+
+// Más proyectos (mismo orden que `work` en cada idioma). type: "dev" | "design".
+const work = [
+  { type: "design", cover: "UX", tags: ["UX/UI", "Research"], url: "https://www.behance.net/gallery/250722963/Solar-lens-Communication-portal-GdO-UXUI" },
+  { type: "dev", cover: "CQRS", tags: ["Spring Boot", "Kafka", "MongoDB"], url: "https://github.com/JuanEstebanDuque/CQRS_EventSourcing" },
+  { type: "dev", cover: "DDD", tags: ["Spring Boot", "PostgreSQL", "Keycloak"], url: "https://github.com/JuanEstebanDuque/Microservicio-gymnasio" },
+  { type: "dev", cover: "P2P", tags: ["React", "TypeScript", "Figma"], url: "https://github.com/JuanEstebanDuque/DeFi-Trust-Engine" },
+  { type: "design", cover: "UI", tags: ["Figma", "Mobile"], url: "https://www.behance.net/gallery/212030649/Nimblo-app-design" },
+  { type: "design", cover: "UI", tags: ["Figma", "Mobile"], url: "https://www.behance.net/gallery/213648995/Kindred-Dating-Mobile-App" },
+  { type: "design", cover: "UX", tags: ["UX research"], url: "https://www.behance.net/gallery/207311861/UX-CASE-STUDY-REMOTE-WORKERS" },
+];
 
 const i18n = {
   es: {
-    nav: ["Proyectos", "Experiencia", "Exploraciones", "Sobre mí", "Contacto"],
+    nav: ["Destacados", "Experiencia", "Proyectos", "Sobre mí", "Contacto"],
     available: "Disponible para nuevos proyectos",
     h1: "Diseño y desarrollo productos web de ",
     h1Accent: "punta a punta.",
@@ -20,17 +49,19 @@ const i18n = {
     contact: "Contacto",
     projectsEyebrow: "01 / Trabajo seleccionado",
     projectsTitle: "Proyectos destacados",
-    viewCase: "Ver caso de estudio",
-    p1Title: "Portal de Comunicación de Valor",
-    p1Text: "Centralicé la propuesta solar de GdO en una experiencia web conectada con WhatsApp.",
-    p1MockTitle: "Tu energía, más clara.",
-    p1MockCta: "Conversemos",
-    p2Title: "Agente de costos médicos",
-    p2Text: "Transformé consultas complejas de costos en respuestas conversacionales simples y trazables.",
-    p2MockTitle: "Consulta de costos",
-    p2MockQuestion: "¿Cuánto cuesta este procedimiento?",
-    p2MockAnswer: "Encontré el valor y su desglose.",
-    p2MockInput: "Escribe tu consulta…",
+    linkLabels: { live: "Ver en vivo", github: "GitHub", behance: "Caso en Behance" },
+    featured: [
+      {
+        title: "Polis · Construye la Torre",
+        text: "Juego phygital cooperativo: cuatro jugadores con información incompleta construyen una torre física hablando entre ellos. App web en tiempo real.",
+        alt: "Portada de Polis: personajes robot frente a una ciudad con torres",
+      },
+      {
+        title: "Xposture",
+        text: "Wearable de biofeedback que avisa en tiempo real sobre la postura y la técnica deportiva. Investigación, app en Flutter y sensores con Arduino.",
+        alt: "Portada del caso de estudio Xposture",
+      },
+    ],
     expEyebrow: "02 / Trayectoria",
     expTitle: "Experiencia",
     jobs: [
@@ -39,32 +70,44 @@ const i18n = {
         company: "INNLAB",
         role: "Desarrollador fullstack",
         text: "Diseño y construyo productos digitales de punta a punta, conectando interfaces, servicios y decisiones de negocio.",
+        projects: [
+          {
+            name: "Agente de costos médicos · Coomeva",
+            text: "Cotizador conversacional con n8n, Supabase e IA que responde el costo de un procedimiento con su desglose.",
+          },
+        ],
       },
       {
         date: "JUN 2024 — MAR 2026",
         company: "Ezmos",
         role: "Desarrollador fullstack remoto",
         text: "Construí interfaces en Next.js y servicios con NestJS para productos con datos en tiempo real.",
+        projects: [
+          {
+            name: "The Funded Picks",
+            text: "Plataforma de retos de pronósticos deportivos fondeados: frontend en Next.js en tres idiomas, panel de administración y API en NestJS.",
+          },
+        ],
+      },
+      {
+        date: "", // TODO: fechas en Banco W
+        company: "Banco W",
+        role: "Diseñador UX",
+        text: "Investigación y diseño de flujos para un chatbot financiero, convirtiendo hallazgos de usuario en decisiones de producto.",
+        projects: [],
       },
     ],
-    exploreEyebrow: "03 / Práctica continua",
-    exploreTitle: "Exploraciones",
-    explorations: [
-      {
-        title: "Monolito a microservicios",
-        text: "Migración con DDD en Spring Boot. Aprendí a separar dominios y diseñar contratos mantenibles.",
-        link: "Ver en GitHub",
-      },
-      {
-        title: "Investigación conversacional",
-        text: "Flujos para un chatbot financiero. Aprendí a convertir hallazgos de usuario en decisiones de producto.",
-        link: "Ver en Behance",
-      },
-      {
-        title: "Laboratorio de interfaces",
-        text: "Exploraciones de producto y sistemas visuales. Aprendí a diseñar pensando en la implementación.",
-        link: "Ver en Behance",
-      },
+    workEyebrow: "03 / Práctica continua",
+    workTitle: "Más proyectos",
+    filters: { all: "Todos", dev: "Desarrollo", design: "Diseño" },
+    work: [
+      { title: "Solar lens · GdO", text: "Portal para que clientes de energía solar entiendan su factura, ahorro y generación. Proyecto Integrador 2, Icesi.", link: "Ver en Behance" },
+      { title: "CQRS y Event Sourcing", text: "Sistema bancario con escritura y lectura separadas en microservicios y eventos por Kafka.", link: "Ver en GitHub" },
+      { title: "Monolito a microservicios", text: "Migración con DDD en Spring Boot: un servicio y una base de datos por contexto.", link: "Ver en GitHub" },
+      { title: "DeFi Trust Engine", text: "Dashboard fintech P2P llevado de Figma a código, con frontend y backend.", link: "Ver en GitHub" },
+      { title: "Nimblo", text: "Diseño de app de producto, de la interacción a la interfaz.", link: "Ver en Behance" },
+      { title: "Kindred", text: "App móvil de citas: flujos, sistema visual e interfaz.", link: "Ver en Behance" },
+      { title: "Trabajo remoto", text: "Investigación UX para mejorar la productividad de quienes trabajan en remoto.", link: "Ver en Behance" },
     ],
     aboutEyebrow: "04 / Perfil",
     aboutTitle: "Sobre mí",
@@ -78,7 +121,7 @@ const i18n = {
     downloadCv: "Descargar hoja de vida",
   },
   en: {
-    nav: ["Projects", "Experience", "Explorations", "About", "Contact"],
+    nav: ["Featured", "Experience", "Projects", "About", "Contact"],
     available: "Available for new projects",
     h1: "I design and build web products from ",
     h1Accent: "end to end.",
@@ -87,17 +130,19 @@ const i18n = {
     contact: "Contact",
     projectsEyebrow: "01 / Selected work",
     projectsTitle: "Featured projects",
-    viewCase: "View case study",
-    p1Title: "Value Communication Portal",
-    p1Text: "I brought GdO's solar offering into a single web experience connected to WhatsApp.",
-    p1MockTitle: "Your energy, made clearer.",
-    p1MockCta: "Let's talk",
-    p2Title: "Medical cost assistant",
-    p2Text: "I turned complex cost queries into simple, traceable conversational answers.",
-    p2MockTitle: "Cost inquiry",
-    p2MockQuestion: "How much does this procedure cost?",
-    p2MockAnswer: "I found the price and its breakdown.",
-    p2MockInput: "Type your question…",
+    linkLabels: { live: "View live", github: "GitHub", behance: "Behance case study" },
+    featured: [
+      {
+        title: "Polis · Build the Tower",
+        text: "A cooperative phygital game: four players with incomplete information build a physical tower just by talking. Real-time web app.",
+        alt: "Polis cover: robot characters in front of a city of towers",
+      },
+      {
+        title: "Xposture",
+        text: "A biofeedback wearable that gives real-time cues on posture and sports technique. Research, a Flutter app, and Arduino sensors.",
+        alt: "Xposture case study cover",
+      },
+    ],
     expEyebrow: "02 / Career",
     expTitle: "Experience",
     jobs: [
@@ -106,32 +151,44 @@ const i18n = {
         company: "INNLAB",
         role: "Fullstack developer",
         text: "I design and build digital products end to end, connecting interfaces, services, and business decisions.",
+        projects: [
+          {
+            name: "Medical cost assistant · Coomeva",
+            text: "A conversational quoting tool built with n8n, Supabase, and AI that answers what a procedure costs, with its breakdown.",
+          },
+        ],
       },
       {
         date: "JUN 2024 — MAR 2026",
         company: "Ezmos",
         role: "Remote fullstack developer",
         text: "I built Next.js interfaces and NestJS services for products powered by real-time data.",
+        projects: [
+          {
+            name: "The Funded Picks",
+            text: "A funded sports-picks challenge platform: Next.js frontend in three languages, admin dashboard, and a NestJS API.",
+          },
+        ],
+      },
+      {
+        date: "",
+        company: "Banco W",
+        role: "UX designer",
+        text: "Research and flow design for a financial chatbot, turning user insights into product decisions.",
+        projects: [],
       },
     ],
-    exploreEyebrow: "03 / Continuous practice",
-    exploreTitle: "Explorations",
-    explorations: [
-      {
-        title: "Monolith to microservices",
-        text: "A DDD migration in Spring Boot. I learned to separate domains and design maintainable contracts.",
-        link: "View on GitHub",
-      },
-      {
-        title: "Conversational research",
-        text: "Flows for a financial chatbot. I learned to turn user insights into product decisions.",
-        link: "View on Behance",
-      },
-      {
-        title: "Interface laboratory",
-        text: "Product and visual system explorations. I learned to design with implementation in mind.",
-        link: "View on Behance",
-      },
+    workEyebrow: "03 / Continuous practice",
+    workTitle: "More projects",
+    filters: { all: "All", dev: "Development", design: "Design" },
+    work: [
+      { title: "Solar lens · GdO", text: "A portal that helps solar energy customers understand their bill, savings, and generation. Capstone project, Icesi.", link: "View on Behance" },
+      { title: "CQRS and Event Sourcing", text: "A banking system with separate write and read microservices and events over Kafka.", link: "View on GitHub" },
+      { title: "Monolith to microservices", text: "A DDD migration in Spring Boot: one service and one database per context.", link: "View on GitHub" },
+      { title: "DeFi Trust Engine", text: "A P2P fintech dashboard taken from Figma to code, frontend and backend.", link: "View on GitHub" },
+      { title: "Nimblo", text: "Product app design, from interaction to interface.", link: "View on Behance" },
+      { title: "Kindred", text: "A dating mobile app: flows, visual system, and interface.", link: "View on Behance" },
+      { title: "Remote work", text: "UX research to improve the productivity of remote workers.", link: "View on Behance" },
     ],
     aboutEyebrow: "04 / Profile",
     aboutTitle: "About me",
@@ -150,4 +207,9 @@ const i18n = {
 console.assert(
   Object.keys(i18n.es).join() === Object.keys(i18n.en).join(),
   "i18n: es y en no tienen las mismas claves"
+);
+// Los textos van por índice junto a `featured` y `work`.
+console.assert(
+  ["es", "en"].every((l) => i18n[l].featured.length === featured.length && i18n[l].work.length === work.length),
+  "i18n: featured/work no coinciden con los datos compartidos"
 );
