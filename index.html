@@ -9,7 +9,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Abel&family=National+Park&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
+  <script>matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.classList.add("motion")</script>
   <script src="i18n.js"></script>
+  <script defer src="motion.js"></script>
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.9/dist/cdn.min.js"></script>
 </head>
 <body
@@ -19,6 +21,7 @@
   }"
   x-effect="document.documentElement.lang = lang; localStorage.setItem('lang', lang)"
 >
+  <div class="progress" aria-hidden="true"></div>
   <header class="header">
     <a class="logo" href="#top" aria-label="JEDT"><img src="assets/logo.svg" alt="" width="89" height="16"></a>
     <nav class="nav">
@@ -36,7 +39,7 @@
     <section class="hero">
       <div class="orb orb-hero" aria-hidden="true"></div>
       <p class="status"><span class="dot"></span><span x-text="t.available"></span></p>
-      <h1><span x-text="t.h1"></span><span class="accent" x-text="t.h1Accent"></span></h1>
+      <h1><span x-text="t.h1"></span><span class="accent"><span class="scribble" x-text="t.h1Accent"></span></span></h1>
       <p class="lead" x-text="t.lead"></p>
       <ul class="tags">
         <li>React</li><li>TypeScript</li><li>Next.js</li><li>NestJS</li><li>Spring Boot</li><li>Figma</li>
@@ -49,13 +52,13 @@
     </section>
 
     <section id="projects" class="section">
-      <div class="section-heading">
+      <div class="section-heading" data-reveal>
         <p class="eyebrow" x-text="t.projectsEyebrow"></p>
         <h2 x-text="t.projectsTitle"></h2>
       </div>
 
       <template x-for="(item, i) in featured" :key="i">
-        <article class="project" :class="{ 'project-reverse': i % 2 }">
+        <article class="project" data-reveal :class="{ 'project-reverse': i % 2 }">
           <div class="preview">
             <img :src="item.img" :alt="t.featured[i].alt" width="1200" height="857" loading="lazy">
           </div>
@@ -66,7 +69,7 @@
             <ul class="tags"><template x-for="tag in item.tags" :key="tag"><li x-text="tag"></li></template></ul>
             <div class="project-links">
               <template x-for="(url, kind) in item.links" :key="kind">
-                <a class="text-link" :href="url" target="_blank" rel="noopener"><span x-text="t.linkLabels[kind]"></span> ↗&#xFE0E;</a>
+                <a class="text-link" :href="url" target="_blank" rel="noopener"><span x-text="t.linkLabels[kind]"></span><i class="arrow" aria-hidden="true">↗&#xFE0E;</i></a>
               </template>
             </div>
           </div>
@@ -75,12 +78,12 @@
     </section>
 
     <section id="experience" class="section">
-      <div class="section-heading">
+      <div class="section-heading" data-reveal>
         <p class="eyebrow" x-text="t.expEyebrow"></p>
         <h2 x-text="t.expTitle"></h2>
       </div>
       <template x-for="job in t.jobs" :key="job.company">
-        <article class="job">
+        <article class="job" data-reveal>
           <p class="eyebrow plain soft" x-text="job.date"></p>
           <div>
             <h3 x-text="job.company"></h3>
@@ -97,24 +100,38 @@
     </section>
 
     <section id="work" class="section" x-data="{ filter: 'all' }">
-      <div class="section-heading">
+      <div class="section-heading" data-reveal>
         <p class="eyebrow" x-text="t.workEyebrow"></p>
         <h2 x-text="t.workTitle"></h2>
       </div>
-      <div class="filters" role="group">
+      <div class="filters" role="group" data-reveal>
         <template x-for="(label, key) in t.filters" :key="key">
           <button type="button" :aria-pressed="filter === key" @click="filter = key" x-text="label"></button>
         </template>
       </div>
       <div class="explorations">
-        <template x-for="(item, i) in work" :key="item.url">
-          <article class="exploration" :class="'exploration-' + item.type" x-show="filter === 'all' || filter === item.type">
+        <template x-for="(item, i) in work" :key="item.cover + i">
+          <article
+            class="exploration"
+            :class="'exploration-' + item.types[0]"
+            :style="'--i:' + (i % 3)"
+            data-reveal
+            x-show="filter === 'all' || item.types.includes(filter)"
+            x-transition:enter="card-enter"
+            x-transition:enter-start="card-from"
+            x-transition:leave="card-leave"
+            x-transition:leave-end="card-from"
+          >
             <div class="exploration-cover" aria-hidden="true"><span x-text="item.cover"></span></div>
             <div class="exploration-body">
               <h3 x-text="t.work[i].title"></h3>
               <p class="muted" x-text="t.work[i].text"></p>
               <ul class="tags"><template x-for="tag in item.tags" :key="tag"><li x-text="tag"></li></template></ul>
-              <a class="text-link" :href="item.url" target="_blank" rel="noopener"><span x-text="t.work[i].link"></span> ↗&#xFE0E;</a>
+              <div class="project-links">
+                <template x-for="(url, kind) in item.links" :key="kind">
+                  <a class="text-link" :href="url" target="_blank" rel="noopener"><span x-text="t.linkLabels[kind]"></span><i class="arrow" aria-hidden="true">↗&#xFE0E;</i></a>
+                </template>
+              </div>
             </div>
           </article>
         </template>
@@ -122,8 +139,8 @@
     </section>
 
     <section id="about" class="section about">
-      <img class="about-photo" src="assets/foto-perfil.webp" :alt="t.photoAlt" width="420" height="525" loading="lazy">
-      <div>
+      <img data-reveal class="about-photo" src="assets/foto-perfil.webp" :alt="t.photoAlt" width="420" height="525" loading="lazy">
+      <div data-reveal>
         <p class="eyebrow" x-text="t.aboutEyebrow"></p>
         <h2 x-text="t.aboutTitle"></h2>
         <p class="about-text" x-text="t.aboutText"></p>
@@ -133,14 +150,14 @@
     <section id="contact" class="section contact">
       <div class="orb orb-contact" aria-hidden="true"></div>
       <p class="eyebrow" x-text="t.contactEyebrow"></p>
-      <div class="contact-cta">
+      <div class="contact-cta" data-reveal>
         <h2 x-text="t.contactTitle"></h2>
         <a class="btn btn-primary" :href="links.email" x-text="t.writeMe"></a>
       </div>
-      <div class="contact-links">
-        <a class="text-link" :href="links.email"><span x-text="t.email"></span> ↗&#xFE0E;</a>
-        <a class="text-link" :href="links.linkedin">LinkedIn ↗&#xFE0E;</a>
-        <a class="text-link" :href="links.github">GitHub ↗&#xFE0E;</a>
+      <div class="contact-links" data-reveal>
+        <a class="text-link" :href="links.email"><span x-text="t.email"></span><i class="arrow" aria-hidden="true">↗&#xFE0E;</i></a>
+        <a class="text-link" :href="links.linkedin">LinkedIn<i class="arrow" aria-hidden="true">↗&#xFE0E;</i></a>
+        <a class="text-link" :href="links.github">GitHub<i class="arrow" aria-hidden="true">↗&#xFE0E;</i></a>
         <a class="btn" :href="links.cv" x-text="t.downloadCv"></a>
       </div>
       <footer class="footer">

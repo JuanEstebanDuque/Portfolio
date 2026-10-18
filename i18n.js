@@ -27,15 +27,22 @@ const featured = [
   },
 ];
 
-// Más proyectos (mismo orden que `work` en cada idioma). type: "dev" | "design".
+// Más proyectos (mismo orden que `work` en cada idioma).
+// types decide en qué filtros aparece ("dev" y/o "design"); links usa las claves de linkLabels.
+const gh = "https://github.com/JuanEstebanDuque/";
+const be = "https://www.behance.net/gallery/";
 const work = [
-  { type: "design", cover: "UX", tags: ["UX/UI", "Research"], url: "https://www.behance.net/gallery/250722963/Solar-lens-Communication-portal-GdO-UXUI" },
-  { type: "dev", cover: "CQRS", tags: ["Spring Boot", "Kafka", "MongoDB"], url: "https://github.com/JuanEstebanDuque/CQRS_EventSourcing" },
-  { type: "dev", cover: "DDD", tags: ["Spring Boot", "PostgreSQL", "Keycloak"], url: "https://github.com/JuanEstebanDuque/Microservicio-gymnasio" },
-  { type: "dev", cover: "P2P", tags: ["React", "TypeScript", "Figma"], url: "https://github.com/JuanEstebanDuque/DeFi-Trust-Engine" },
-  { type: "design", cover: "UI", tags: ["Figma", "Mobile"], url: "https://www.behance.net/gallery/212030649/Nimblo-app-design" },
-  { type: "design", cover: "UI", tags: ["Figma", "Mobile"], url: "https://www.behance.net/gallery/213648995/Kindred-Dating-Mobile-App" },
-  { type: "design", cover: "UX", tags: ["UX research"], url: "https://www.behance.net/gallery/207311861/UX-CASE-STUDY-REMOTE-WORKERS" },
+  { types: ["design"], cover: "UX", tags: ["UX/UI", "Research"], links: { behance: be + "250722963/Solar-lens-Communication-portal-GdO-UXUI" } },
+  { types: ["dev", "design"], cover: "IoT", tags: ["NestJS", "MongoDB", "Arduino", "React"], links: { front: gh + "HCI-family-care-frontend", back: gh + "HCI-family-care" } },
+  { types: ["design", "dev"], cover: "UI", tags: ["Figma", "Next.js"], links: { behance: be + "212030649/Nimblo-app-design", github: gh + "Nimblo" } },
+  { types: ["dev"], cover: "CQRS", tags: ["Spring Boot", "Kafka", "MongoDB"], links: { github: gh + "CQRS_EventSourcing" } },
+  { types: ["dev"], cover: "DDD", tags: ["Spring Boot", "PostgreSQL", "Keycloak"], links: { github: gh + "Microservicio-gymnasio" } },
+  { types: ["dev"], cover: "P2P", tags: ["React", "TypeScript", "Figma"], links: { github: gh + "DeFi-Trust-Engine" } },
+  { types: ["dev"], cover: "ML", tags: ["Python", "OpenCV", "Machine learning"], links: { github: gh + "Image-processing-with-Artificial-Intelligence-coin-identifier-and-counter" } },
+  { types: ["dev"], cover: "CI/CD", tags: ["Docker", "GitHub Actions", "NestJS"], links: { github: gh + "Docker-CICD-practice" } },
+  { types: ["dev"], cover: "Ops", tags: ["Spring Boot", "React", "Docker", "GitHub Actions"], links: { github: gh + "NexusOnPremise_practice" } },
+  { types: ["design"], cover: "UI", tags: ["Figma", "Mobile"], links: { behance: be + "213648995/Kindred-Dating-Mobile-App" } },
+  { types: ["design"], cover: "UX", tags: ["UX research"], links: { behance: be + "207311861/UX-CASE-STUDY-REMOTE-WORKERS" } },
 ];
 
 const i18n = {
@@ -49,7 +56,7 @@ const i18n = {
     contact: "Contacto",
     projectsEyebrow: "01 / Trabajo seleccionado",
     projectsTitle: "Proyectos destacados",
-    linkLabels: { live: "Ver en vivo", github: "GitHub", behance: "Caso en Behance" },
+    linkLabels: { live: "Ver en vivo", github: "GitHub", behance: "Behance", front: "Frontend", back: "Backend" },
     featured: [
       {
         title: "Polis · Construye la Torre",
@@ -117,13 +124,17 @@ const i18n = {
     workTitle: "Más proyectos",
     filters: { all: "Todos", dev: "Desarrollo", design: "Diseño" },
     work: [
-      { title: "Solar lens · GdO", text: "Portal para que clientes de energía solar entiendan su factura, ahorro y generación. Proyecto Integrador 2, Icesi.", link: "Ver en Behance" },
-      { title: "CQRS y Event Sourcing", text: "Sistema bancario con escritura y lectura separadas en microservicios y eventos por Kafka.", link: "Ver en GitHub" },
-      { title: "Monolito a microservicios", text: "Migración con DDD en Spring Boot: un servicio y una base de datos por contexto.", link: "Ver en GitHub" },
-      { title: "DeFi Trust Engine", text: "Dashboard fintech P2P llevado de Figma a código, con frontend y backend.", link: "Ver en GitHub" },
-      { title: "Nimblo", text: "Diseño de app de producto, de la interacción a la interfaz.", link: "Ver en Behance" },
-      { title: "Kindred", text: "App móvil de citas: flujos, sistema visual e interfaz.", link: "Ver en Behance" },
-      { title: "Trabajo remoto", text: "Investigación UX para mejorar la productividad de quienes trabajan en remoto.", link: "Ver en Behance" },
+      { title: "Solar lens · GdO", text: "Portal para que clientes de energía solar entiendan su factura, ahorro y generación. Proyecto Integrador 2, Icesi." },
+      { title: "HCI Family Care", text: "Acompañamiento pasivo de adultos mayores: sensores en objetos cotidianos, puente Bluetooth, API en NestJS y panel para la cuidadora." },
+      { title: "Nimblo", text: "Diseño de app de producto llevado a código en Next.js." },
+      { title: "CQRS y Event Sourcing", text: "Sistema bancario con escritura y lectura separadas en microservicios y eventos por Kafka." },
+      { title: "Monolito a microservicios", text: "Migración con DDD en Spring Boot: un servicio y una base de datos por contexto." },
+      { title: "DeFi Trust Engine", text: "Dashboard fintech P2P llevado de Figma a código, con frontend y backend." },
+      { title: "Contador de monedas con IA", text: "Identificación y conteo de monedas en imágenes con detección de círculos y clasificación multietiqueta." },
+      { title: "Docker y CI/CD", text: "Imágenes multi-stage para backend y frontend, con pipeline en GitHub Actions y runner propio." },
+      { title: "CI/CD multicapa", text: "Taller de integración y despliegue continuo: Spring Boot, React, Docker Compose y GitHub Actions." },
+      { title: "Kindred", text: "App móvil de citas: flujos, sistema visual e interfaz." },
+      { title: "Trabajo remoto", text: "Investigación UX para mejorar la productividad de quienes trabajan en remoto." },
     ],
     aboutEyebrow: "04 / Perfil",
     aboutTitle: "Sobre mí",
@@ -146,7 +157,7 @@ const i18n = {
     contact: "Contact",
     projectsEyebrow: "01 / Selected work",
     projectsTitle: "Featured projects",
-    linkLabels: { live: "View live", github: "GitHub", behance: "Behance case study" },
+    linkLabels: { live: "View live", github: "GitHub", behance: "Behance", front: "Frontend", back: "Backend" },
     featured: [
       {
         title: "Polis · Build the Tower",
@@ -214,13 +225,17 @@ const i18n = {
     workTitle: "More projects",
     filters: { all: "All", dev: "Development", design: "Design" },
     work: [
-      { title: "Solar lens · GdO", text: "A portal that helps solar energy customers understand their bill, savings, and generation. Capstone project, Icesi.", link: "View on Behance" },
-      { title: "CQRS and Event Sourcing", text: "A banking system with separate write and read microservices and events over Kafka.", link: "View on GitHub" },
-      { title: "Monolith to microservices", text: "A DDD migration in Spring Boot: one service and one database per context.", link: "View on GitHub" },
-      { title: "DeFi Trust Engine", text: "A P2P fintech dashboard taken from Figma to code, frontend and backend.", link: "View on GitHub" },
-      { title: "Nimblo", text: "Product app design, from interaction to interface.", link: "View on Behance" },
-      { title: "Kindred", text: "A dating mobile app: flows, visual system, and interface.", link: "View on Behance" },
-      { title: "Remote work", text: "UX research to improve the productivity of remote workers.", link: "View on Behance" },
+      { title: "Solar lens · GdO", text: "A portal that helps solar energy customers understand their bill, savings, and generation. Capstone project, Icesi." },
+      { title: "HCI Family Care", text: "Passive support for older adults: sensors in everyday objects, a Bluetooth bridge, a NestJS API, and a caregiver dashboard." },
+      { title: "Nimblo", text: "Product app design taken to code in Next.js." },
+      { title: "CQRS and Event Sourcing", text: "A banking system with separate write and read microservices and events over Kafka." },
+      { title: "Monolith to microservices", text: "A DDD migration in Spring Boot: one service and one database per context." },
+      { title: "DeFi Trust Engine", text: "A P2P fintech dashboard taken from Figma to code, frontend and backend." },
+      { title: "AI coin counter", text: "Identifying and counting coins in images with circle detection and multi-label classification." },
+      { title: "Docker and CI/CD", text: "Multi-stage images for backend and frontend, with a GitHub Actions pipeline and a self-hosted runner." },
+      { title: "Multi-tier CI/CD", text: "A continuous integration and deployment workshop: Spring Boot, React, Docker Compose, and GitHub Actions." },
+      { title: "Kindred", text: "A dating mobile app: flows, visual system, and interface." },
+      { title: "Remote work", text: "UX research to improve the productivity of remote workers." },
     ],
     aboutEyebrow: "04 / Profile",
     aboutTitle: "About me",
